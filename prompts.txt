@@ -1,0 +1,26 @@
+> schreibe mir eine einleitung zum Thema IC- und VLSI-Design:
+
+> ich will für meine Ausarbeitung eine Einleitung in IC und Vlsi design machen, ich habe aktuell schon etwas und würde gerne das ganze abrunden bzw beenden mit ein paar sätzten dazu wie man aktuell ICs designed also etwas auf den Flow eingehen oder wie man das heutzutage eben macht. nur high level übersicht erstmal. aktuell habe ich: <aktuelle Einleitung>
+
+> Jetzt würde ich gerne den nächsten Abschnitt schreiben, "Ausgangspunkt für das Design" es geht in der Ausarbeitung darum, dass ich den generellen Flow erkläre fürs Designen in meiner Abteilung, wir sind im backend also fangen an mit gate level netzliste und machen von da den Rest. schreibe mir jetzt den Absat Ausgangspunkt für das Design, damit der Leser abgeholt ist und weiß was vorliegt und eine grundlage hat dass ich als nächstes direkt mit dem Floorplaning weiter machen kann
+    >> du sollst nicht auf die nächste phase eingehen, nur ausgangspunkt darstellen, versuchs nochmal
+        >>> ich fang den anfang vom vorherigen besser aber ich finde gut wie beim zweiten design mehr erwähnt wird was noch gebraucht wird wie costraints usw
+
+> ich habe jetzt in der ausarbeitung den punkt ausganspunkt für das design um zu sagen wo genau ich ansetzte bei meine ausarbeitung:
+    Der Ausgangspunkt unseres Backend-Designprozesses ist eine vollständig verifizierte Gate-Level-Netzliste,
+    die aus der Synthesephase stammt.
+    Diese Netzliste beschreibt die logische Struktur der Schaltung auf Basis standardisierter Zellen 
+    aus der verwendeten Technologie-Bibliothek. 
+    Sie enthält alle funktionalen Informationen und die logischen Verbindungen, 
+    jedoch noch keine physische Anordnung der Komponenten auf dem Chip.
+
+    Neben der Netzliste liegen zu diesem Zeitpunkt auch die relevanten Design-Constraints vor. Dazu gehören unter anderem Timing-Anforderungen, Vorgaben zur Leistungsaufnahme sowie Flächenbeschränkungen. Diese Randbedingungen sind entscheidend, um die physische Implementierung so zu gestalten, dass die funktionalen und technologischen Spezifikationen eingehalten werden.
+
+    Damit ist die Ausgangslage klar definiert: eine funktional korrekte, technologiegebundene Netzliste sowie die zugehörigen Constraints, die im weiteren Verlauf des Backend-Flows berücksichtigt werden müssen.
+
+    also schreibe mir jetzt text mit dem ich meine section ausgangspunkt für das design anfangen kann (du kannst vonmiraus auch den text danach etwas anpassen falls sinvoll)
+    ich möchte gerne vor diesem text nochmal kurz darstellen dass man front und backend unterscheided, und etwas darauf eingehen wo genau man diese netzliste herkriegt, am besten erklärst du beides anhand des bildes welches ich vorher einfügen werden
+
+>  jetzt will ich den Abschnitt IC-Designflow anfangen, in dem gibt es 5 subsection floorplaning, placement, cts, routing und signoff, ich will erstmal anfangen mit floorplaning. jeder abschnitt soll in sich schlüssig sein und gut in den nächsten übergehen. bedenke dass wir gerade aus der einleitung kommen und jetzt ansetzten wollen mit dem floorplaning. erkläre erstmal was man da macht, also was passiert beim floorplaning, worauf muss man achten und was optimieren
+
+> jetzt vielleicht das ganze kurz abschliessen mit verweisen und verbindungen zu dem bild was am anfang des abschnittes ist (auf dem ist ein design nach floorplaning zu sehen , io pads, ip blöcke usw. auf dem anderem bild ist eine nahaufnahme des powerroutings zu sehen)

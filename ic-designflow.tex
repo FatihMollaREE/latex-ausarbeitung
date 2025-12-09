@@ -1,0 +1,79 @@
+
+\subsection{Floorplaning}
+\begin{figure}[h!]
+    \centering
+    \begin{subfigure}[b]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{figures/init.png}
+        \caption{Chip-Layout nach dem Floorplanning}
+        \label{fig:floorplan}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{figures/powerrouting-fein.png}
+        \caption{Detailansicht des Power-Grid-Designs}
+        \label{fig:powergrid}
+    \end{subfigure}
+    \caption{Darstellung des Floorplanning und des Power-Grid-Designs}
+    \label{fig:floorplan-powergrid}
+\end{figure}
+
+Nachdem die Ausgangslage mit einer verifizierten Gate-Level-Netzliste und den zugehörigen Design-Constraints definiert ist, beginnt die physische Implementierung mit dem \textbf{Floorplanning}.  
+Beim Floorplanning wird die grundlegende Struktur des Chips festgelegt. Ziel ist es, eine effiziente Anordnung der funktionalen Blöcke, Makrozellen und Standardzellen zu planen, sodass spätere Schritte wie Platzierung und Verdrahtung optimal durchgeführt werden können.
+
+Wichtige Aspekte beim Floorplanning sind:
+\begin{itemize}
+    \item \textbf{Chipgröße und Form}: Die Dimensionen müssen den Flächenvorgaben entsprechen und gleichzeitig genügend Platz für alle Komponenten sowie die Verdrahtung bieten.
+    \item \textbf{Makroplatzierung}: Große Blöcke wie Speicher oder IP-Cores werden strategisch positioniert, um kurze Signalwege und gute Timing-Eigenschaften zu gewährleisten.
+    \item \textbf{Power-Grid-Design}: Die Stromversorgung wird früh geplant, um eine stabile Versorgung aller Bereiche sicherzustellen.
+    \item \textbf{I/O-Pads und Schnittstellen}: Die Positionierung der Ein- und Ausgänge beeinflusst die Signalführung und die Integration ins Gehäuse.
+\end{itemize}
+
+Abbildung~\ref{fig:floorplan} zeigt ein Design nach dem Floorplanning: Die IO-Pads sind entlang des Chiprandes angeordnet, während große IP-Blöcke und Makrozellen im Inneren platziert sind. Freie Bereiche dienen später der Platzierung von Standardzellen.  
+Eine weitere Detailansicht in Abbildung~\ref{fig:powergrid} verdeutlicht das Power-Grid-Design, das für eine stabile Stromversorgung sorgt. Hier sind die VDD- und VSS-Leitungen sowie die zugehörigen Strukturen zu erkennen, die bereits in dieser frühen Phase berücksichtigt werden müssen. Diese sind über das gesamte Design verteilt in einem Grid angeordnet, aber aufgrund von Übersichtsgründen in der Abbildung~\ref{fig:floorplan} ausgeblendet.
+
+
+\subsection{Placement}
+
+"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+\begin{figure}[h!]
+    \centering
+     \includegraphics[width=0.35\textwidth]{figures/place.png}
+    \caption{Design nach Placement}
+    \label{Placement}
+\end{figure}
+
+\subsection{CTS}
+
+"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+\begin{figure}[h!]
+    \centering
+     \includegraphics[width=0.35\textwidth]{figures/clock_tree.png}
+    \caption{Synthetisierter Clocktree}
+    \label{CTS}
+\end{figure}
+
+\subsection{Routing}
+
+"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+\begin{figure}[h!]
+    \centering
+     \includegraphics[width=0.35\textwidth]{figures/init.png}
+    \caption{Design nach Floorplanning und Powerrouting}
+    \label{Routing}
+\end{figure}
+
+\subsection{Signoff}
+
+"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+\begin{figure}[h!]
+    \centering
+     \includegraphics[width=0.35\textwidth]{figures/init.png}
+    \caption{Design nach Floorplanning und Powerrouting}
+    \label{Signoff}
+\end{figure}

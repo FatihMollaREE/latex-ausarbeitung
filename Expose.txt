@@ -1,0 +1,77 @@
+browser: zotero plugin
+
+\...
+\addbibressource{pfadzurlibexport.bib}
+text der zitat ist s.~/cite{keyVonBib}
+\printbibliography
+//siehe Moodle
+
+> vorab planen
+> gliederung machen
+> schätzen wv seiten und welche themen
+
+> 2 Möglichkeiten zu schreiben, 1) tag für tag mit labortagebuch 2)  vorab planen
+
+
+
+expose:
+ziel schlank und präzise halten (kleiner scope)
+in der einführung eine zentraler graphik auf die man aufbaut/zurück greift
+
+
+Titel:
+	Vom RTL zum GDS: Einführung in das VLSI-Design von ICs mit Fokus auf Cadence Innovus
+	
+Existenzgrund:
+	Der Grund für die Existenz der Arbeit von Fatih M. ist das Bedürfnis von Studenten ein grundlegendes Verständnis des Digitalen- Design Flows von integrierten Schaltkreisen zu entwickeln
+	
+Ziel der Arbeit:
+	Ziel ist es Studenten, oder anderen neu Einsteigern mit Basis-Wissen im Bereich von Mikroelektronik einen groben Überblick in das Designen von Digitalen Schaltkreisen zu geben. Besonders wird hierbei ein Fokus auf den groben Flow als auch das Tool Innovus von Cadence gelegt, welches hierfür eine zentrale Rolle spielt
+	
+Forschungsfragen:
+	Wie ist der grobe Ablauf vom RTL Code bis hin zum fertigen Design (GDS file)
+	Welche wichtigen Phasen werden hier durchlaufen UND welche Rolle nimmt das Tool Innovus hierbei ein
+	
+Vorgehensweise:
+	Zuerst wird ein grober Überblick über alle Phasen des Design-Flows dargestellt. Anschliessend sollen die wichtigsten Phasen hervorgehoben als auch näher erläutert werden.
+	Zuletzt soll auch eine Einführung in die Nutzung des Innovus Tools zur Umsetzung dieser Phasen gegeben werden
+	
+
+Gliederung:
+
+	Einleitung:
+		Einführung in das Thema:
+			-was genau ist VLSI bzw. IC Design
+			-Generellen Flow Übersicht Darstellen (Frontend: [RTL -> Synthese ->] Backend: [Floorplaning -> Placement -> CTS -> Routing -> Signoff])
+			
+		Ausgangspunkt des Designflows für Leute im Backend:
+			-Fokus liegt in dieser Ausarbeitung mehr auf dem Backend (also Ausgangspunkt ist eine gatelevel Netzliste)
+			-was genau hat man und womit fängt man an und wie kam man dazu kurz erläutern
+
+	Hauptteil (Theorie):
+		Floorplaning:
+			-was passiert in dieser Phase
+			-worauf muss man achten / was muss man optimieren
+		Placement:
+			-
+			-
+		CTS:
+			-
+			-
+		Routing:
+			-
+			-
+		Signoff:
+			-
+			-
+
+	Hauptteil (Praxis):
+		Cadence Innovus:
+			-was ist das Tool was kann es
+			-wie setzt man damit die Design-Phasen um vom Floorplaning -> Signoff wichtigesten Befehle
+			-EDE Design Tool?
+
+	Schluss:
+		-wo kann man mehr nachlesen zum Innovus (also wo findet man Doku dazu)
+		
+	

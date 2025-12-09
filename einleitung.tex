@@ -1,0 +1,43 @@
+
+\subsection{Einführung in IC- und VLSI-Design}
+
+\begin{figure}[h!]
+    \centering
+     \includegraphics[width=0.5\textwidth]{figures/4004.jpg}
+    \caption{erster digital entwickelter IC, Intel 4004}
+    \label{Intel 4004}
+\end{figure}
+
+Integrierte Schaltungen (Integrated Circuits, ICs) sind Grundlage moderner Elektronik,
+ welche uns überall im Alltag begegnet. 
+ Sie ermöglichen die Funktionalität von Computern, 
+ Smartphones und einer Vielzahl weiterer Systeme. 
+ Ein IC ist hierbei im Wesentlichen eine Ansammlung von elektronischen Bauelementen - wie Transistoren, Widerständen und Kondensatoren - 
+ die auf einem einzigen Halbleiterchip integriert sind. 
+ Eben diese Integration erlaubt eine kompakte Bauweise, 
+ hohe Leistungsfähigkeit und geringe Kosten.
+
+Mit der zunehmenden Miniaturisierung und steigenden Anforderungen an Rechenleistung entwickelte sich das VLSI-Design (Very Large-Scale Integration) zu einer Schlüssel\-technologie. VLSI bezeichnet die Integration von Millionen bis Milliarden Transistoren auf einem einzigen Chip. Diese hohe Integrationsdichte ermöglicht nicht nur leistungsstarke Prozessoren und Speicher, sondern auch energieeffiziente Lösungen für mobile und eingebettete Systeme. Die Komplexität solcher Designs erfordert den Einsatz spezialisierter Methoden und Werkzeuge, um sowohl Funktionalität als auch Zuverlässigkeit und Herstellbarkeit sicherzustellen.
+
+Die Entwicklung integrierter Schaltungen erfolgt heute in einem strukturierten Design-Flow, der sowohl Hardwarebeschreibung als auch automatisierte Werkzeuge umfasst. Typischerweise beginnt der Prozess mit der Spezifikation der gewünschten Funktionalität, gefolgt von der Beschreibung in Hardwarebeschreibungssprachen wie VHDL oder Verilog. Anschließend wird das Design durch Synthese in eine Netzliste überführt, die die logische Struktur der Schaltung beschreibt.
+
+Darauf folgt die Place-and-Route-Phase, in der die logischen Elemente physisch auf dem Chip angeordnet und die Verbindungen hergestellt werden. Moderne Tools berück\-sichtigen dabei Aspekte wie Timing, Leistungsaufnahme und Flächenoptimierung. Nach umfangreichen Verifikations- und Signoff-Schritten (Simulation, Timing-Analyse, DRC und LVS) wird das finale Layout als GDSII-Datei an die Fertigung übergeben.
+
+Dieser Flow wird heute stark durch EDA-Tools (Electronic Design Automation) und Methoden wie Design-for-Test, Low-Power-Optimierung sowie IP-Reuse unterstützt, um die Komplexität beherrschbar zu machen und die Time-to-Market zu verkürzen.
+
+\subsection{Ausgangspunkt für das Design}
+\begin{figure}[h!]
+    \centering
+     \includegraphics[width=0.6\textwidth]{figures/design-flow.pdf}
+    \caption{Allgemeiner Design-Flow beim IC-Design}
+    \label{Design-Flow}
+\end{figure}
+
+Wie in Abbildung~\ref{Design-Flow} dargestellt, lässt sich der gesamte IC-Designprozess grob in zwei Hauptbereiche unterteilen: das \textbf{Frontend} und das \textbf{Backend}.  
+Das Frontend umfasst die frühen Phasen wie Systemspezifikation, Architekturdesign sowie das funktionale und logische Design. Hier wird die gewünschte Funktionalität des Chips beschrieben und in einer Hardwarebeschreibungssprache (z.\,B. VHDL oder Verilog) modelliert. Anschließend erfolgt die \textbf{Synthese}, bei der diese abstrakte Beschreibung in eine Gate-Level-Netzliste überführt wird. Diese Netzliste bildet die logische Struktur der Schaltung auf Basis standardisierter Zellen aus der verwendeten Technologie-Bibliothek.
+
+Das Backend beginnt dort, wo die logische Beschreibung vorliegt und in eine physische Implementierung überführt werden muss. Der Ausgangspunkt unseres Backend-Designprozesses ist daher eine vollständig verifizierte Gate-Level-Netzliste, die aus der Synthesephase stammt. Sie enthält alle funktionalen Informationen und die logischen Verbindungen, jedoch noch keine physische Anordnung der Komponenten auf dem Chip.
+
+Neben der Netzliste liegen zu diesem Zeitpunkt auch die relevanten Design-Constraints vor. Dazu gehören unter anderem Timing-Anforderungen, Vorgaben zur Leistungsaufnahme sowie Flächenbeschränkungen. Diese Randbedingungen sind entscheidend, um die physische Implementierung so zu gestalten, dass die funktionalen und technologischen Spezifikationen eingehalten werden.
+
+Damit ist die Ausgangslage klar definiert: eine funktional korrekte, technologiegebundene Netzliste sowie die zugehörigen Constraints, die im weiteren Verlauf des Backend-Flows berücksichtigt werden müssen.
