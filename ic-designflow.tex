@@ -1,28 +1,11 @@
 
-\subsection{Floorplaning}
-\begin{figure}[h!]
-    \centering
-    \begin{subfigure}[b]{0.48\textwidth}
-        \centering
-        \includegraphics[width=\textwidth]{figures/init.png}
-        \caption{Chip-Layout nach dem Floorplanning}
-        \label{fig:floorplan}
-    \end{subfigure}
-    \hfill
-    \begin{subfigure}[b]{0.48\textwidth}
-        \centering
-        \includegraphics[width=\textwidth]{figures/powerrouting-fein.png}
-        \caption{Detailansicht des Power-Grid-Designs}
-        \label{fig:powergrid}
-    \end{subfigure}
-    \caption{Darstellung des Floorplanning und des Power-Grid-Designs}
-    \label{fig:floorplan-powergrid}
-\end{figure}
+\subsection{Floorplaning: Strukturierung des Chips}
 
-Nachdem die Ausgangslage mit einer verifizierten Gate-Level-Netzliste und den zugehörigen Design-Constraints definiert ist, beginnt die physische Implementierung mit dem \textbf{Floorplanning}.  
+Mit der Ausgangslage einer verifizierten Gate-Level-Netzliste und den zugehörigen Design-Constraints, beginnt die physische Implementierung mit dem \textbf{Floorplanning}.  
 Beim Floorplanning wird die grundlegende Struktur des Chips festgelegt. Ziel ist es, eine effiziente Anordnung der funktionalen Blöcke, Makrozellen und Standardzellen zu planen, sodass spätere Schritte wie Platzierung und Verdrahtung optimal durchgeführt werden können.
 
 Wichtige Aspekte beim Floorplanning sind:
+\setlist[itemize]{itemsep=0pt, topsep=2pt}
 \begin{itemize}
     \item \textbf{Chipgröße und Form}: Die Dimensionen müssen den Flächenvorgaben entsprechen und gleichzeitig genügend Platz für alle Komponenten sowie die Verdrahtung bieten.
     \item \textbf{Makroplatzierung}: Große Blöcke wie Speicher oder IP-Cores werden strategisch positioniert, um kurze Signalwege und gute Timing-Eigenschaften zu gewährleisten.
@@ -33,47 +16,128 @@ Wichtige Aspekte beim Floorplanning sind:
 Abbildung~\ref{fig:floorplan} zeigt ein Design nach dem Floorplanning: Die IO-Pads sind entlang des Chiprandes angeordnet, während große IP-Blöcke und Makrozellen im Inneren platziert sind. Freie Bereiche dienen später der Platzierung von Standardzellen.  
 Eine weitere Detailansicht in Abbildung~\ref{fig:powergrid} verdeutlicht das Power-Grid-Design, das für eine stabile Stromversorgung sorgt. Hier sind die VDD- und VSS-Leitungen sowie die zugehörigen Strukturen zu erkennen, die bereits in dieser frühen Phase berücksichtigt werden müssen. Diese sind über das gesamte Design verteilt in einem Grid angeordnet, aber aufgrund von Übersichtsgründen in der Abbildung~\ref{fig:floorplan} ausgeblendet.
 
-
-\subsection{Placement}
-
-"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-
-\begin{figure}[h!]
+\begin{figure}[H]
     \centering
-     \includegraphics[width=0.35\textwidth]{figures/place.png}
-    \caption{Design nach Placement}
-    \label{Placement}
+    \begin{subfigure}[b]{0.31\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{figures/init.png}
+        \caption{Chip-Layout nach dem Floorplanning}
+        \label{fig:floorplan}
+    \end{subfigure}
+    \hfil
+    \begin{subfigure}[b]{0.31\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{figures/powerrouting-fein.png}
+        \caption{Detailansicht des Power-Grid-Designs}
+        \label{fig:powergrid}
+    \end{subfigure}
+    \caption{Darstellung des Floorplanning und des Power-Grid-Designs}
+    \label{fig:floorplan-powergrid}
 \end{figure}
 
-\subsection{CTS}
+\subsection{Placement: Anordnung der Standardzellen}
 
-"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+Nach dem Floorplanning, bei dem die grobe Struktur des Chips und die Position der Makrozellen festgelegt wurden, folgt der Schritt des \textbf{Placements}. Hier werden die Millionen von Standardzellen, die die eigentliche Logik des Designs bilden, in den dafür vorgesehenen Bereichen des Chips platziert. Ziel ist es, eine Anordnung zu finden, die sowohl die funktionalen Anforderungen als auch die physikalischen Randbedingungen erfüllt.
 
-\begin{figure}[h!]
+Beim Placement müssen mehrere Aspekte berücksichtigt werden:
+\begin{itemize}[itemsep=0pt, topsep=2pt]
+    \item \textbf{Timing-Optimierung}: Die Positionierung der Zellen beeinflusst die Länge der Verbindungen und damit die Signallaufzeiten. Kurze kritische Pfade sind entscheidend für die Einhaltung der Timing-Constraints.
+    \item \textbf{Congestion-Vermeidung}: Eine gleichmäßige Verteilung der Zellen verhindert Engpässe bei der späteren Verdrahtung.
+    \item \textbf{Legalization}: Nach der initialen Platzierung müssen alle Zellen auf erlaubten Positionen innerhalb des Standardzellenrasters liegen, ohne Überlappungen.
+\end{itemize}
+
+Abbildung~\ref{fig:placement} zeigt das Design nach dem Placement. Die großen Blöcke im Inneren sind die bereits beim Floorplanning positionierten Makrozellen und IP-Blöcke. Die graue Fläche, die wie eine „Wolke“ wirkt, repräsentiert die Vielzahl der platzierten Standardzellen, die nun die logische Funktionalität des Chips abbilden. Am Rand sind weiterhin die IO-Pads sichtbar, die die Schnittstellen zur Außenwelt bilden.
+
+Um die Struktur dieser „Wolke“ besser zu verdeutlichen, zeigt Abbildung~\ref{fig:placement-zoom} einen vergrößerten Ausschnitt. Hier wird deutlich, dass die Wolke aus einer Vielzahl einzelner Standardzellen besteht, die eng nebeneinander angeordnet sind. Jede dieser Zellen enthält Pins (gelbe Punkte), die später über das Routing miteinander verbunden werden.
+
+
+\begin{figure}[H]
     \centering
-     \includegraphics[width=0.35\textwidth]{figures/clock_tree.png}
-    \caption{Synthetisierter Clocktree}
-    \label{CTS}
+    \begin{subfigure}[b]{0.43\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{figures/place.png}
+        \caption{Design nach dem Placement}
+        \label{fig:placement}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.43\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{figures/place-zoom.png}
+        \caption{Vergrößerter Ausschnitt der „Wolke“}
+        \label{fig:placement-zoom}
+    \end{subfigure}
+    \caption{Übersicht (links) und Zoom (rechts) des Placements.}
+    \label{fig:placement-combined}
 \end{figure}
 
-\subsection{Routing}
+\subsection{Clock Tree Synthesis: Taktverteilung}
 
-"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+Nach der Platzierung aller Standardzellen folgt die \textbf{Clock Tree Synthesis (CTS)}, ein entscheidender Schritt zur Sicherstellung einer korrekten und synchronen Taktverteilung im gesamten Design.  
+Während das Taktsignal im logischen Design als ideal angenommen wird, muss es in der physischen Implementierung über eine Vielzahl von Pfaden verteilt werden. Ziel der CTS ist es, einen Baum aus Taktleitungen und Pufferzellen zu erzeugen, der alle Takt-Sinks (z.\,B. Flip-Flops) erreicht und dabei die zeitlichen Anforderungen erfüllt.
 
-\begin{figure}[h!]
+Die wichtigsten Herausforderungen bei der CTS sind:
+\begin{itemize}
+    \item \textbf{Minimierung des Skews}: Alle Takt-Sinks sollen das Signal möglichst gleichzeitig erhalten, um Setup- und Hold-Verletzungen zu vermeiden.
+    \item \textbf{Optimierung der Latenz}: Die Gesamtlaufzeit des Taktsignals vom Ursprung bis zu den Sinks muss innerhalb der vorgegebenen Grenzen liegen.
+    \item \textbf{Energieeffizienz}: Durch den Einsatz von Clock-Gating-Zellen kann die dynamische Leistungsaufnahme reduziert werden.
+\end{itemize}
+
+Abbildung~\ref{fig:cts} zeigt die Struktur eines Clock-Trees nach der CTS-Phase. Die grünen Dreiecke repräsentieren Puffer, die das Taktsignal verstärken und verteilen. Die türkisen Kreise sind Clock-Gating-Zellen, die eine selektive Abschaltung des Takts ermöglichen, um Energie zu sparen. Die roten Quadrate an den Blättern des Baumes sind die Takt-Sinks, also die Endpunkte des Taktsignals, typischerweise Flip-Flops. Auf der Y-Achse ist die Zeit aufgetragen, was die zeitliche Verteilung des Taktsignals und den Unterschied an den Takt-Sinks verdeutlicht. Anhand des Höhenunterschieds zweier Takt-Sinks lässt sich so der zeitliche Versatz (Skew) des Taktsignals zwischen zwei Flipflops bestimmen.
+
+Diese Baumstruktur ist nicht nur eine theoretische Darstellung, sondern wird im Design physisch umgesetzt. Das bedeutet, dass die in der Abbildung gezeigten Puffer und Clock-Gating-Zellen tatsächlich als zusätzliche Zellen in das Layout eingefügt werden. Sie werden nach der CTS-Phase im Chip platziert und später wie alle anderen Netze geroutet. Dadurch entsteht ein physischer Clock-Tree, der die logische Struktur widerspiegelt und die Taktverteilung im realen Chip sicherstellt.
+
+\begin{figure}[H]
     \centering
-     \includegraphics[width=0.35\textwidth]{figures/init.png}
-    \caption{Design nach Floorplanning und Powerrouting}
-    \label{Routing}
+    \includegraphics[width=0.7\textwidth]{figures/clock_tree.png}
+    \caption{Visualisierung des Clock-Trees nach der CTS-Phase: Puffer (grün), Clock-Gating-Zellen (türkis) und Sinks (rot)}
+    \label{fig:cts}
 \end{figure}
 
-\subsection{Signoff}
+\subsection{Routing: Physische Verbindung der Netze}
 
-"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+Nach der erfolgreichen Clock Tree Synthesis folgt das \textbf{Routing}, bei dem alle logischen Verbindungen des Designs physisch realisiert werden. Während die Platzierung und CTS die Position der Zellen und die Taktverteilung festgelegt haben, sorgt das Routing dafür, dass sämtliche Netze über die verfügbaren Metall-Layer verbunden werden.  
+Dieser Schritt ist besonders komplex, da Millionen von Verbindungen unter Berücksichtigung zahlreicher Randbedingungen erstellt werden müssen.
 
-\begin{figure}[h!]
+Die wichtigsten Ziele beim Routing sind:
+\begin{itemize}
+    \item \textbf{Einhaltung der Design-Regeln (DRC)}: Alle Leitungen müssen den technologischen Vorgaben entsprechen, z.\,B. Mindestabstände und Breiten.
+    \item \textbf{Timing-Optimierung}: Kritische Netze werden bevorzugt geroutet, um Verzögerungen zu minimieren.
+    \item \textbf{Vermeidung von Crosstalk und EM-Problemen}: Die Anordnung der Leitungen beeinflusst Signalstörungen und die Zuverlässigkeit.
+\end{itemize}
+
+Abbildung~\ref{fig:routing} zeigt einen stark vergrößerten Ausschnitt des Designs nach dem Routing. In Bild~(a) sind alle Metall-Layer deaktiviert, sodass nur die Standardzellen und ihre Pins sichtbar sind. Die gelben Punkte markieren die Anschlussstellen der Zellen. In Bild~(b) wurde ein einzelner Metall-Layer aktiviert, wodurch die vertikalen Leitungen erkennbar sind, die einige der Pins verbinden. Farblich hervorgehobene Segmente (rot und grün) kennzeichnen spezielle Netze oder Prüfpunkte.
+
+\begin{figure}[H]
     \centering
-     \includegraphics[width=0.35\textwidth]{figures/init.png}
-    \caption{Design nach Floorplanning und Powerrouting}
-    \label{Signoff}
+    \begin{subfigure}[b]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{figures/route-zoomed-noRoutes.png}
+        \caption{Ausschnitt ohne aktive Metall-Layer: nur Zellen und Pins sichtbar}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.48\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{figures/route-zoomed.png}
+        \caption{Mit aktivem Metall-Layer: vertikale Leitungen und Verbindungen}
+    \end{subfigure}
+    \caption{Detailansicht des Designs nach dem Routing}
+    \label{fig:routing}
 \end{figure}
+
+\subsection{Signoff: Finale Validierung}
+
+Nachdem alle logischen Verbindungen geroutet und die physische Implementierung abgeschlossen ist, folgt die \textbf{Signoff-Phase}. Sie stellt sicher, dass das Design nicht nur funktional korrekt, sondern auch herstellbar und zuverlässig ist.  
+Während die vorherigen Schritte das Layout erstellt haben, dient Signoff als finale Validierung vor der Übergabe an die Fertigung.
+
+Typische Prüfungen im Signoff sind:
+\begin{itemize}
+    \item \textbf{Design Rule Check (DRC)}: Überprüfung, ob alle geometrischen Vorgaben der Technologie eingehalten werden, z.\,B. Mindestabstände und Breiten.
+    \item \textbf{Layout versus Schematic (LVS)}: Sicherstellung, dass das physische Layout der logischen Netzliste entspricht.
+    \item \textbf{Static Timing Analysis (STA)}: Analyse aller Pfade, um die Einhaltung der Timing-Constraints zu garantieren.
+    \item \textbf{Power- und EM-Checks}: Untersuchung auf Stromdichteprobleme, Elektromigration und IR-Drop, um die Zuverlässigkeit sicherzustellen.
+\end{itemize}
+
+Erst wenn alle Signoff-Prüfungen erfolgreich abgeschlossen sind, wird das finale Layout in das GDSII-Format exportiert und an die Fertigung übergeben. Damit endet der physische Design-Flow normalerweise, und der Chip kann in die Produktion gehen.
+
+Es ist jedoch wichtig zu beachten, dass der Signoff nicht immer den endgültigen Abschluss des Designprozesses darstellt. In dieser Phase können Probleme wie Timing-Verletzungen, DRC-Fehler oder Stromversorgungsprobleme auftreten, die eine Anpassung des Layouts erforderlich machen.  
+In solchen Fällen müssen einzelne Schritte des Backend-Flows erneut durchlaufen werden – beispielsweise eine Optimierung der Platzierung, eine Anpassung des Clock-Trees oder ein erneutes Routing. Dieser iterative Charakter des Prozesses ist typisch für komplexe IC-Designs und stellt sicher, dass alle Spezifikationen vor der Fertigung zuverlässig erfüllt werden.

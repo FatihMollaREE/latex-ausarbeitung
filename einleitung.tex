@@ -1,5 +1,5 @@
 
-\subsection{Einführung in IC- und VLSI-Design}
+\subsection{Grundlagen des IC- und VLSI-Designs}
 
 \begin{figure}[h!]
     \centering
@@ -25,13 +25,7 @@ Darauf folgt die Place-and-Route-Phase, in der die logischen Elemente physisch a
 
 Dieser Flow wird heute stark durch EDA-Tools (Electronic Design Automation) und Methoden wie Design-for-Test, Low-Power-Optimierung sowie IP-Reuse unterstützt, um die Komplexität beherrschbar zu machen und die Time-to-Market zu verkürzen.
 
-\subsection{Ausgangspunkt für das Design}
-\begin{figure}[h!]
-    \centering
-     \includegraphics[width=0.6\textwidth]{figures/design-flow.pdf}
-    \caption{Allgemeiner Design-Flow beim IC-Design}
-    \label{Design-Flow}
-\end{figure}
+\subsection{Startpunkt des Design-Flows}
 
 Wie in Abbildung~\ref{Design-Flow} dargestellt, lässt sich der gesamte IC-Designprozess grob in zwei Hauptbereiche unterteilen: das \textbf{Frontend} und das \textbf{Backend}.  
 Das Frontend umfasst die frühen Phasen wie Systemspezifikation, Architekturdesign sowie das funktionale und logische Design. Hier wird die gewünschte Funktionalität des Chips beschrieben und in einer Hardwarebeschreibungssprache (z.\,B. VHDL oder Verilog) modelliert. Anschließend erfolgt die \textbf{Synthese}, bei der diese abstrakte Beschreibung in eine Gate-Level-Netzliste überführt wird. Diese Netzliste bildet die logische Struktur der Schaltung auf Basis standardisierter Zellen aus der verwendeten Technologie-Bibliothek.
@@ -41,3 +35,9 @@ Das Backend beginnt dort, wo die logische Beschreibung vorliegt und in eine phys
 Neben der Netzliste liegen zu diesem Zeitpunkt auch die relevanten Design-Constraints vor. Dazu gehören unter anderem Timing-Anforderungen, Vorgaben zur Leistungsaufnahme sowie Flächenbeschränkungen. Diese Randbedingungen sind entscheidend, um die physische Implementierung so zu gestalten, dass die funktionalen und technologischen Spezifikationen eingehalten werden.
 
 Damit ist die Ausgangslage klar definiert: eine funktional korrekte, technologiegebundene Netzliste sowie die zugehörigen Constraints, die im weiteren Verlauf des Backend-Flows berücksichtigt werden müssen.
+\begin{figure}[h!]
+    \centering
+     \includegraphics[width=0.6\textwidth]{figures/design-flow.pdf}
+    \caption{Allgemeiner Design-Flow beim IC-Design}
+    \label{Design-Flow}
+\end{figure}

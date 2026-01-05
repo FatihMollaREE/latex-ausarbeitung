@@ -1,0 +1,114 @@
+\subsection{Überblick über Cadence-Innovus}
+
+Cadence Innovus ist ein Electronic Design Automation (EDA)-Tool, das speziell für die physische Implementierung von integrierten Schaltungen entwickelt wurde. Es ist Teil der Cadence Digital Implementation Suite und wird in der Industrie als Standardlösung für den Backend-Design-Flow eingesetzt. Innovus deckt alle wesentlichen Schritte der physischen Designphase ab, darunter Floorplanning, Placement, Clock Tree Synthesis (CTS), Routing und Signoff.
+
+Das Tool bietet leistungsfähige Optimierungsalgorithmen, die darauf ausgelegt sind, Timing-Anforderungen einzuhalten, die Leistungsaufnahme zu reduzieren und die Chip\-flä\-che effizient zu nutzen. Innovus ist für Designs mit sehr hoher Komplexität geeignet, die Millionen bis Milliarden von Standardzellen umfassen. Neben einer grafischen Benutzeroberfläche (GUI) unterstützt Innovus auch eine skriptbasierte Steuerung über Tcl, was eine flexible Automatisierung des Design-Flows ermöglicht.
+
+Ein weiterer Vorteil ist die enge Integration mit anderen Cadence-Produkten wie Genus für die logische Synthese und Tempus für die Timing-Analyse. Diese Kombination erlaubt einen durchgängigen und konsistenten Design-Flow von der RTL-Beschreibung bis zum finalen Layout. Innovus wird aufgrund seiner Skalierbarkeit, Effizienz und umfangreichen Funktionen in der Industrie breit eingesetzt und gilt als eines der führenden Werkzeuge für die physische Implementierung moderner ICs.
+
+\subsection{EDE-Tool: Rolle und Integration}
+
+Nachdem die grundlegenden Funktionen und die Bedeutung von Cadence Innovus im physischen Design-Flow erläutert wurden, stellt sich die Frage, wie die Interaktion zwischen den verschiedenen Werkzeugen und Prozessen effizient gestaltet werden kann. Hier kommt das EDE-Tool ins Spiel. Es bildet die Schnittstelle zwischen den Design-Teams und den eingesetzten EDA-Werkzeugen und sorgt für eine konsistente, automatisierte und kontrollierte Umgebung.
+
+Das EDE-Tool ist eine GUI-basierte Layout-Design-Umgebung, die einen hohen Grad an Automatisierung bietet. Es dient als zentrale Plattform, um den gesamten Place-and-Route-Flow effizient zu steuern und konsistent zu halten. Alle technologie-, bibliotheks- und signoff-relevanten Einstellungen werden zentral gepflegt und sind für alle Nutzer einheitlich verfügbar, was die Qualität und Reproduzierbarkeit des Designs sicherstellt.
+Innerhalb des EDE können einzelne Aufgaben des Design-Flows entweder als separate Schritte ausgeführt oder zu einem vollständigen beziehungsweise teilweisen PnR-Flow zusammengefasst werden. Für jede Designpartition steht ein eigenes „EDE-Cockpit“ zur Verfügung, das die Steuerung und Überwachung der jeweiligen Prozesse ermöglicht. Dabei können verpflichtende und optionale Schritte flexibel gewählt werden. Einige dieser Schritte müssen in einer festgelegten Reihenfolge ausgeführt werden, während andere unabhängig voneinander gestartet werden können.
+Durch diese Struktur bietet das EDE-Tool nicht nur eine benutzerfreundliche Oberfläche, sondern auch eine robuste Grundlage für die Automatisierung komplexer Abläufe. Dies reduziert manuelle Fehler, beschleunigt den Designprozess und erleichtert die Zusammenarbeit in großen Projekten.
+
+Abbildung~\ref{fig:ede_gui} zeigt die grafische Benutzeroberfläche des EDE-Tools. Auf der linken Seite sind die einzelnen Schritte des physischen Design-Flows dargestellt, die innerhalb des Tools ausgeführt werden können, wie beispielsweise \textbf{PreCTS (Initialisierung)}, \textbf{Routing}, \textbf{Signoff} und weitere Phasen. Diese Schritte können einzeln oder in Kombination gestartet werden. Auf der rechten Seite sind die zugehörigen Skripte sichtbar, die in den jeweiligen Phasen verwendet werden. Sie enthalten die spezifischen Befehle und Parameter, die den Ablauf der einzelnen Schritte steuern. Auf die Inhalte dieser Skripte sowie die wichtigsten Befehle wird im nächsten Abschnitt detailliert eingegangen.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{./figures/ede-gui.png}
+    \caption{EDE-GUI mit Flow-Schritten (links) und zugehörigen Skripten (rechts)}
+    \label{fig:ede_gui}
+\end{figure}
+
+\subsection{Implementierung der Designphasen im Innovus}
+
+Die Steuerung des physischen Design-Flows erfolgt in unserer Umgebung über das EDE-Cockpit und phasenbezogene Skripte, die Cadence Innovus (und ggf. angebundene Tools) automatisiert ansteuern. Jede Phase lädt zunächst allgemeine Einstellungen über \emph{Always-Source}-Blöcke (Technologie-, Timing- und Constraint-Setup), bevor die spezifischen Schritte der Phase ausgeführt werden. Im Folgenden werden die wesentlichen Tätigkeiten pro Phase zusammengefasst; die zugehörigen Befehle/Steps sind in der Tabelle am Ende dieses Abschnitts aufgeführt.
+
+\paragraph{Initialisierung (init)}%
+Die Initialisierung bereitet das Design auf die physische Implementierung vor.
+\begin{itemize}
+    \item Allgemeines Projekt-Setup: Pfade, Variablen und Skript-Bindungen; Innovus-\-Session wird konfiguriert.
+    \item Einlesen der Gate-Level-Netzliste und ggf. vorhandener \texttt{DEF}-Informationen (Start-Floorplan, Pins).
+    \item Verbinden der Power-Netze (\texttt{VDD}/\texttt{VSS}) und Laden technologie-/bibliotheksrelevanter Dateien.
+    \item Einlesen der RAM-/Memory-Instanzen und zugehöriger Definitionen.
+    \item Einfügen von Endcaps und Well-Taps zur Gewährleistung korrekter Randbedingungen und Substratanbindung.
+    \item Erstellen der Power-Routing-Struktur (Power-Grid); Festlegen von \texttt{pg\_keepout}-Zonen für Versorgung.
+    \item Hinzufügen von \emph{respin cells} (falls projektspezifisch erforderlich).
+    \item Koordinaten-Normalisierung, z.\,B. \emph{Shift Origin} auf die linke untere Ecke (\emph{LL}).
+\end{itemize}
+
+\paragraph{Placement (place)}%
+In der Platzierungsphase werden logische Zellen positioniert und der Kontext für nachfolgende Optimierungen geschaffen.
+\begin{itemize}
+    \item Laden der \emph{Always-Source}-Einstellungen: u.\,a. OCV-Modelle, globale Constraints, \texttt{dontTouch}-Sets.
+    \item Einstellen von  \emph{NDRs} (Non-Default Rules) für kritische Netze.
+    \item Festlegen von \emph{VT-Gruppen} gemäß UPC-Definitionen (Leckstrom/Timing-Zielsetzung).
+    \item DFT-Vorplatzierung: Einfügen von \emph{OCCs}, Haupt-DFT-Bereich; Vorplatzierung von \emph{SIBs}, Isolationsmodulen und \emph{MBIST}-Gruppen.
+    \item Erneutes Setzen von \texttt{pg\_keepout}-Zonen (Versorgungsnetz-Reserven).
+    \item Einlesen der \emph{Scan}-Definitionen; Schutz abuttierter Partition-Pins; Hinzufügen von Interface-Buffern.
+    \item \emph{Cell Padding} für Register (Abstandsregeln zur Entzerrung).
+    \item (Re-)Connect der Power-Netze, falls erforderlich; \emph{cgate}-Platzierung (Clock-Gating-Zellen).
+    \item Definition von \emph{Path Groups} für die Timing-Analyse und Optimierungspriorisierung.
+    \item Platzierung und kombinierte Optimierung via \texttt{place\_opt\_design}.
+    \item \emph{save design}.
+\end{itemize}
+
+\paragraph{Clock Tree Synthesis (CTS)}%
+Die CTS erzeugt und optimiert den physikalischen Taktbaum.
+\begin{itemize}
+    \item Laden der \emph{Always-Source}-Einstellungen (CTS-spezifische Parameter).
+    \item \texttt{ccopt} Konfiguration: Clock-Domain-Spezifikation, Puffer-/Inverter-Auswahl, Skew-/Latency-Ziele.
+    \item Ausführen der Taktbaum-Erzeugung und -Optimierung mit \texttt{clock\_opt\_design}.
+    \item Entfernen vorher gesetzter \emph{cell padding} (sofern nicht mehr erforderlich).
+    \item \emph{Hold}-Optimierung zur Einhaltung kurzer Pfade (Setup/Hold-Balance).
+    \item \emph{save design}.
+\end{itemize}
+
+\paragraph{Routing (route)}%
+Das Routing verbindet die Netze über die verfügbaren Metall-Layer unter Einhaltung der Designregeln.
+\begin{itemize}
+    \item Laden der \emph{Always-Source}-Einstellungen; Setzen eines Genauigkeit/Laufzeit-Trade-offs (Routing-Strategie).
+    \item (Re-)Connect der Power-Netze; Feinanpassung der \emph{NDRs} für ausgewählte Netze.
+    \item Kombination aus globalem und detailliertem Routing über \texttt{route\_opt\_design}.
+    \item \emph{ADDCAP}: Kapazitive Ergänzungen/Decaps zur Stabilisierung der Versorgung und Reduktion von IR-Drop/Noise.
+    \item \emph{save design}.
+\end{itemize}
+
+\paragraph{Signoff (signoff)}%
+Die Signoff-Phase validiert Herstellbarkeit, Timing und Zuverlässigkeit und bereitet die Übergabe an die Fertigung vor.
+\begin{itemize}
+    \item RC-Extraktion (\texttt{extract\_rc}) für akkurate parasitäre Modelle.
+    \item \emph{Static Timing Analysis} und Abschluss-Timing (\texttt{signoff\_timing}); ggf. ECO-Schleifen.
+    \item Design Rule Checks (\texttt{signoff\_dr}) und ergänzende DFM-Prüfungen.
+    \item Optional: Power-/EM-Analysen (IR-Drop, Elektromigration) je nach Projekt-Setup.
+    \item Export der finalen Daten (z.\,B. \texttt{write\_gds} für GDSII).
+\end{itemize}
+
+\begin{table}[H]
+    \centering
+    \caption{Zuordnung zentraler Befehle zu den Phasen}
+    \label{tab:phase_cmds}
+    \begin{tabular}{p{0.25\textwidth} p{0.65\textwidth}}
+        \toprule
+        \textbf{Phase} & \textbf{Wichtige Befehle} \\
+        \midrule
+        Initialisierung (init) & 
+        \texttt{read\_netlist}, \texttt{read\_def}, \texttt{create\_power\_nets}, \texttt{pg\_keepout} \\
+        \midrule
+        Placement (place) & 
+        \texttt{place\_opt\_design}, \texttt{pg\_keepout} \\
+        \midrule
+        CTS & 
+        \texttt{clock\_opt\_design} \\
+        \midrule
+        Routing (route) & 
+        \texttt{route\_opt\_design} \\
+        \midrule
+        Signoff (signoff) & 
+        \texttt{<placeholder>} \\
+        \bottomrule
+    \end{tabular}
+\end{table}

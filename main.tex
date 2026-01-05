@@ -5,6 +5,11 @@
 \usepackage{siunitx}
 \usepackage{subcaption}
 
+\usepackage{float}
+\usepackage{enumitem}
+
+\usepackage{booktabs}
+
 \newcommand{\zB}{z.\,B.\,}
 
 \title{Vom RTL zum GDS}
@@ -22,41 +27,32 @@
 \newpage
 
 \tableofcontents
-\newpage
+\newpage    
 
-\section{Glossar}
+\section{Glossar und Abkürzungen}
+
 \input{glossar.tex}
 \newpage
 
-\section{Motivation}
+\section{Motivation und Zielsetzung}
 \input{motivation.tex}
 \newpage
 
-\section{Einleitung}
+\section{Einführung in das Thema}
 \input{einleitung.tex}
 
 
-\section{IC-Designflow}
+\section{Physischer IC-Designflow}
 \input{ic-designflow.tex}
 \newpage
 
-\section{Cadence Innovus}
-
-\subsection{Toolübersicht}
-
-\subsection{Umsetzung der Phasen mithilfe von Innovus}
-
+\section{Cadence Innovus im Design-Flow}
+\input{innovus.tex}
 \newpage
 
-\section{EDE-Tool}
+\section{Fazit und Ausblick}
+\input{fazit.tex}
 
-\subsection{Rolle und Nutzung des EDE-Tools}
-
-\newpage
-
-\section{Ausblick}
-
-\subsection{Fortbildung zum Innovus}
 
 
 \end{document}

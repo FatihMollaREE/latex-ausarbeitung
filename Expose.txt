@@ -1,4 +1,8 @@
 browser: zotero plugin
+^
+-figure schriftgröße soll ca. gleich sein wie normale schriftgröße
+-zuerst text das auf bild verweisst und danach erst das bild zeigen
+
 
 \...
 \addbibressource{pfadzurlibexport.bib}
