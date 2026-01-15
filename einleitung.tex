@@ -35,9 +35,68 @@ Das Backend beginnt dort, wo die logische Beschreibung vorliegt und in eine phys
 Neben der Netzliste liegen zu diesem Zeitpunkt auch die relevanten Design-Constraints vor. Dazu gehören unter anderem Timing-Anforderungen, Vorgaben zur Leistungsaufnahme sowie Flächenbeschränkungen. Diese Randbedingungen sind entscheidend, um die physische Implementierung so zu gestalten, dass die funktionalen und technologischen Spezifikationen eingehalten werden.
 
 Damit ist die Ausgangslage klar definiert: eine funktional korrekte, technologiegebundene Netzliste sowie die zugehörigen Constraints, die im weiteren Verlauf des Backend-Flows berücksichtigt werden müssen.
+
 \begin{figure}[h!]
     \centering
-     \includegraphics[width=0.6\textwidth]{figures/design-flow.pdf}
+    \begin{tikzpicture}[
+        scale=0.7,
+        transform shape,
+        node distance=0.5cm,
+        >=Stealth,
+        rednode/.style={
+            rectangle, draw=red!60, fill=red!5, very thick,
+            minimum width=5cm, minimum height=1cm
+        },
+        bluenode/.style={
+            rectangle, draw=blue!60, fill=blue!5, very thick,
+            minimum width=5cm, minimum height=1cm
+        },
+        smallbluenode/.style={
+            rectangle, draw=blue!60, fill=blue!5, very thick,
+            minimum width=5cm
+        },
+        whitenode/.style={
+            rectangle, draw=black!60, fill=white!5, very thick,
+            minimum width=5cm, minimum height=1cm
+        }
+    ]
+        \node[rednode, align=center] (system) {Systemspezifikation \\ und Architekturdesign};
+        \node[rednode, below=of system, align=center] (func) {Funktionales Design \\ und Logisches Design};
+        \node[bluenode, below=of func] (circuit) {Synthese};
+        \node[bluenode, below=of circuit, align=center] (physical) {Physikalische \\ Implementierung};
+        \node[whitenode, below=of physical, align=center] (verify) {Physikalische Verifikation\\ und Signoff};
+        \node[whitenode, below=of verify] (fabrication) {Fabrikation};
+
+        % Right column nodes
+        %\node[smallbluenode, right=of func, xshift=3cm] (partitioning) {Partitioning};
+        %\node[smallbluenode, below=of partitioning] (planning) {Floorplanning};
+        %\node[smallbluenode, right=of circuit, xshift=3cm, yshift=2cm] (planning){Design Planning};
+        %\node[smallbluenode, below=of planning] (placement) {Placement};
+        %\node[smallbluenode, below=of placement] (clock) {Clock-Tree-Synthese};
+        %\node[smallbluenode, below=of clock] (routing) {Routing};
+        %\node[smallbluenode, below=of routing] (timing) {Timing Closure};
+        \node[smallbluenode, right=of physical, xshift=3cm] (clock) {Clock-Tree-Synthese};
+        \node[smallbluenode, above=of clock] (placement) {Placement};
+        \node[smallbluenode, above=of placement] (planning){Design Planning};
+        \node[smallbluenode, below=of clock] (routing) {Routing};
+        \node[smallbluenode, below=of routing] (timing) {Signoff};
+
+        % Connections
+        \draw[->] (system) -- (func);
+        \draw[->] (func) -- (circuit);
+        \draw[->] (circuit) -- (physical);
+        \draw[->] (physical) -- (verify);
+        \draw[->] (verify) -- (fabrication);
+
+        %\draw[dashed, -] (physical.north east) -- (partitioning.north west);
+        \draw[dashed, -] (physical.north east) -- (planning.north west);
+        \draw[dashed, -] (physical.south east) -- (timing.south west);
+        %\draw[->] (partitioning) -- (planning);
+        \draw[->] (planning) -- (placement);
+        \draw[->] (placement) -- (clock);
+        \draw[->] (clock) -- (routing);
+        \draw[->] (routing) -- (timing);
+    \end{tikzpicture}
     \caption{Allgemeiner Design-Flow beim IC-Design}
     \label{Design-Flow}
 \end{figure}

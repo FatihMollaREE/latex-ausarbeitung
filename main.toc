@@ -1,23 +1,22 @@
 \babel@toc {ngerman}{}\relax 
-\contentsline {section}{\numberline {1}Glossar und Abkürzungen}{3}{}%
-\contentsline {section}{\numberline {2}Motivation und Zielsetzung}{4}{}%
-\contentsline {section}{\numberline {3}Einführung in das Thema}{5}{}%
-\contentsline {subsection}{\numberline {3.1}Grundlagen des IC- und VLSI-Designs}{5}{}%
-\contentsline {subsection}{\numberline {3.2}Startpunkt des Design-Flows}{6}{}%
-\contentsline {section}{\numberline {4}Physischer IC-Designflow}{7}{}%
-\contentsline {subsection}{\numberline {4.1}Floorplaning: Strukturierung des Chips}{7}{}%
-\contentsline {subsection}{\numberline {4.2}Placement: Anordnung der Standardzellen}{8}{}%
-\contentsline {subsection}{\numberline {4.3}Clock Tree Synthesis: Taktverteilung}{9}{}%
-\contentsline {subsection}{\numberline {4.4}Routing: Physische Verbindung der Netze}{10}{}%
-\contentsline {subsection}{\numberline {4.5}Signoff: Finale Validierung}{10}{}%
-\contentsline {section}{\numberline {5}Cadence Innovus im Design-Flow}{12}{}%
-\contentsline {subsection}{\numberline {5.1}Überblick über Cadence-Innovus}{12}{}%
-\contentsline {subsection}{\numberline {5.2}EDE-Tool: Rolle und Integration}{12}{}%
-\contentsline {subsection}{\numberline {5.3}Implementierung der Designphasen im Innovus}{13}{}%
-\contentsline {paragraph}{\nonumberline Initialisierung (init)}{13}{}%
-\contentsline {paragraph}{\nonumberline Placement (place)}{14}{}%
-\contentsline {paragraph}{\nonumberline Clock Tree Synthesis (CTS)}{14}{}%
-\contentsline {paragraph}{\nonumberline Routing (route)}{15}{}%
-\contentsline {paragraph}{\nonumberline Signoff (signoff)}{15}{}%
-\contentsline {section}{\numberline {6}Fazit und Ausblick}{16}{}%
+\contentsline {section}{\numberline {1}Motivation und Zielsetzung}{3}{}%
+\contentsline {section}{\numberline {2}Einführung in das Thema}{4}{}%
+\contentsline {subsection}{\numberline {2.1}Grundlagen des IC- und VLSI-Designs}{4}{}%
+\contentsline {subsection}{\numberline {2.2}Startpunkt des Design-Flows}{5}{}%
+\contentsline {section}{\numberline {3}Physischer IC-Designflow}{6}{}%
+\contentsline {subsection}{\numberline {3.1}Floorplaning: Strukturierung des Chips}{6}{}%
+\contentsline {subsection}{\numberline {3.2}Placement: Anordnung der Standardzellen}{7}{}%
+\contentsline {subsection}{\numberline {3.3}Clock Tree Synthesis: Taktverteilung}{8}{}%
+\contentsline {subsection}{\numberline {3.4}Routing: Physische Verbindung der Netze}{9}{}%
+\contentsline {subsection}{\numberline {3.5}Signoff: Finale Validierung}{10}{}%
+\contentsline {section}{\numberline {4}Cadence Innovus im Design-Flow}{11}{}%
+\contentsline {subsection}{\numberline {4.1}Überblick über Cadence-Innovus}{11}{}%
+\contentsline {subsection}{\numberline {4.2}EDE-Tool: Rolle und Integration}{11}{}%
+\contentsline {subsection}{\numberline {4.3}Implementierung der Designphasen im Innovus}{12}{}%
+\contentsline {paragraph}{\nonumberline Initialisierung (init)}{12}{}%
+\contentsline {paragraph}{\nonumberline Placement (place)}{13}{}%
+\contentsline {paragraph}{\nonumberline Clock Tree Synthesis (CTS)}{13}{}%
+\contentsline {paragraph}{\nonumberline Routing (route)}{14}{}%
+\contentsline {paragraph}{\nonumberline Signoff (signoff)}{14}{}%
+\contentsline {section}{\numberline {5}Fazit und Ausblick}{15}{}%
 \providecommand \tocbasic@end@toc@file {}\tocbasic@end@toc@file 

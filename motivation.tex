@@ -10,3 +10,33 @@ und der zentralen Rolle des VLSI-Designs in nahezu allen Bereichen moderner Elek
 Ein praxisnaher Bezug wird durch die Darstellung des spezifischen Design-Flows innerhalb der Firma REE (Renesas Electronics Europe) geschaffen.
 Dies soll den Einstieg in reale industrielle Prozesse erleichtern und eine Grundlage für weiterführende Projekte oder
 Tätigkeiten bieten.
+
+\begin{figure}[h!]
+  \centering
+  \begin{tikzpicture}
+    \begin{axis}[
+      width=0.9\linewidth,
+      height=10cm,
+      ymode=log,
+      log basis y=10,
+      xlabel={Jahr},
+      ylabel={Transistoren pro Chip},
+      ymin=1e3, ymax=1e11,
+      grid=both,
+      grid style={dotted,gray!50},
+      legend pos=south east,
+      every axis plot/.append style={thick}
+    ]
+      % Punkte + Linie
+      \addplot+[only marks, mark=*] table [x=Year, y=Transistors, col sep=comma] {./data/moore_raw_data.csv};
+      \addlegendentry{Rohdaten}
+
+      % Einfache Trendlinie (Moore ~ Verdopplung alle ~2 Jahre):
+      % Beispiel: passe Startwert + Verdopplungsrate an dein Intervall an.
+      \addplot+[domain=1970:2025, samples=20] {2300 * 2^((x-1971)/2)};
+      \addlegendentry{Moore-Trend (Verdopplung $\approx$ 2 Jahre)}
+    \end{axis}
+  \end{tikzpicture}
+  \caption{Moore’s Law – illustrative Rohdaten und Trend}
+  \label{fig:moore}
+\end{figure}

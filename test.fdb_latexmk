@@ -1,16 +1,11 @@
 # Fdb version 4
-["pdflatex"] 1762430420.88815 "c:/Users/a5137749/Documents/Abteilungen/Schule/LaTeX/test.tex" "test.pdf" "test" 1762430423.17294 0
-  "c:/Users/a5137749/Documents/Abteilungen/Schule/LaTeX/test.tex" 1762430417 228 34b00f03142cd45fdba1baebee984385 ""
-  "c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb" 1762253908 35752 024fb6c41858982481f6968b5fc26508 ""
-  "c:/texlive/2025/texmf-dist/tex/latex/base/article.cls" 1762257447 20144 b966087dda3b194755eb460d32e2ef75 ""
-  "c:/texlive/2025/texmf-dist/tex/latex/base/size10.clo" 1762257447 8448 686612a86f0e04f41ea577f5ec7e83d8 ""
-  "c:/texlive/2025/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def" 1762257391 30662 bfd6e864f4ffc5018b0e2b6260c3181c ""
+["pdflatex"] 1768491102.63817 "c:/Users/a5137749/Documents/Abteilungen/Schule/LaTeX/test.tex" "test.pdf" "test" 1768491103.6923 2
+  "c:/Users/a5137749/Documents/Abteilungen/Schule/LaTeX/test.tex" 1768491098 0 d41d8cd98f00b204e9800998ecf8427e ""
   "c:/texlive/2025/texmf-dist/web2c/texmf.cnf" 1762253696 42213 4e2ca030e8e2640502016e9e45868dcb ""
-  "c:/texlive/2025/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1762261884 5574345 9e0538e80e24c9ae9ee679f6f1bbacd7 ""
   "c:/texlive/2025/texmf-var/web2c/pdftex/pdflatex.fmt" 1762262239 3633970 f6ace2bfcef67c2622fd7a4c1c36c289 ""
   "c:/texlive/2025/texmf.cnf" 1762261842 713 e69b156964470283e0530f5060668171 ""
-  "test.aux" 1762430423 32 3985256e7290058c681f74d7a3565a19 "pdflatex"
-  "test.tex" 1762430417 228 34b00f03142cd45fdba1baebee984385 ""
+  "test.aux" 1768491094 32 3985256e7290058c681f74d7a3565a19 "pdflatex"
+  "test.tex" 1768491098 0 d41d8cd98f00b204e9800998ecf8427e ""
   (generated)
   "test.aux"
   "test.log"

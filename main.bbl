@@ -1,0 +1,64 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.3 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{nyt/global//global/global/global}
+    \entry{chakravarthi_soc_2022}{book}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=8d1ac58179515217fded4f119bf9afb2}{%
+           family={Chakravarthi},
+           familyi={C\bibinitperiod},
+           given={Veena\bibnamedelima S.},
+           giveni={V\bibinitperiod\bibinitdelim S\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{language}{1}{%
+        {eng}%
+      }
+      \list{location}{1}{%
+        {Cham}%
+      }
+      \list{publisher}{1}{%
+        {Springer International Publishing AG}%
+      }
+      \strng{namehash}{8d1ac58179515217fded4f119bf9afb2}
+      \strng{fullhash}{8d1ac58179515217fded4f119bf9afb2}
+      \strng{fullhashraw}{8d1ac58179515217fded4f119bf9afb2}
+      \strng{bibnamehash}{8d1ac58179515217fded4f119bf9afb2}
+      \strng{authorbibnamehash}{8d1ac58179515217fded4f119bf9afb2}
+      \strng{authornamehash}{8d1ac58179515217fded4f119bf9afb2}
+      \strng{authorfullhash}{8d1ac58179515217fded4f119bf9afb2}
+      \strng{authorfullhashraw}{8d1ac58179515217fded4f119bf9afb2}
+      \field{sortinit}{C}
+      \field{sortinithash}{4d103a86280481745c9c897c925753c0}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{shorttitle}
+      \field{annotation}{Description based on publisher supplied metadata and other sources}
+      \field{edition}{1st ed}
+      \field{isbn}{978-3-030-98112-9}
+      \field{shorttitle}{{SoC} {Physical} {Design}}
+      \field{title}{{SoC} {Physical} {Design}: {A} {Comprehensive} {Guide}}
+      \field{year}{2022}
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+
