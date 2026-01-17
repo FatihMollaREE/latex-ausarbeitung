@@ -1,3 +1,4 @@
+
 Das Ziel dieser Ausarbeitung ist es, 
 Studierenden der Elektro- und Informationstechnik, Informatik sowie verwandter Fachrichtungen einen verständlichen Einblick
 in die Welt des digitalen Designs integrierter Schaltungen zu geben.  
@@ -15,8 +16,8 @@ Tätigkeiten bieten.
   \centering
   \begin{tikzpicture}
     \begin{axis}[
-      width=0.9\linewidth,
-      height=10cm,
+      width=0.7\linewidth,
+      height=8cm,
       ymode=log,
       log basis y=10,
       xlabel={Jahr},
@@ -24,19 +25,42 @@ Tätigkeiten bieten.
       ymin=1e3, ymax=1e11,
       grid=both,
       grid style={dotted,gray!50},
-      legend pos=south east,
-      every axis plot/.append style={thick}
+      legend style={
+          font=\footnotesize,
+          at={(0.98,0.02)},
+          anchor=south east,
+          draw=none
+      },
+      every axis plot/.append style={thick},
+      ticklabel style={/pgf/number format/1000 sep={}}
     ]
-      % Punkte + Linie
-      \addplot+[only marks, mark=*] table [x=Year, y=Transistors, col sep=comma] {./data/moore_raw_data.csv};
+      % Rohdatenpunkte aus CSV
+      \addplot+[only marks, mark=*, mark size=1.5pt, blue] 
+        table [x=Year, y=Transistors, col sep=comma, header=true] {./data/moore_raw_data.csv};
       \addlegendentry{Rohdaten}
 
-      % Einfache Trendlinie (Moore ~ Verdopplung alle ~2 Jahre):
-      % Beispiel: passe Startwert + Verdopplungsrate an dein Intervall an.
-      \addplot+[domain=1970:2025, samples=20] {2300 * 2^((x-1971)/2)};
-      \addlegendentry{Moore-Trend (Verdopplung $\approx$ 2 Jahre)}
+      % Moore-Trendlinie nur gerade Linie
+      \addplot+[red, thick, mark=none, domain=1970:2025, samples=2] 
+        {2300 * 2^((x-1971)/2)};
+      \addlegendentry{Moore-Trend}
+
     \end{axis}
   \end{tikzpicture}
-  \caption{Moore’s Law – illustrative Rohdaten und Trend}
+  \caption{Mooresche Gesetz - Die exponentielle Zunahme der Transistordichte}
   \label{fig:moore}
 \end{figure}
+
+
+\subsection*{Berechnung der Trendlinie}
+
+Die Trendlinie wird durch die exponentielle Ausgleichsgerade approximiert:
+
+\[
+y(x) = y_0 \cdot 2^{\frac{x-x_0}{T}}
+\]
+
+\begin{description}
+  \item[$y(x)$] Anzahl der Transistoren im Jahr $x$
+  \item[$y_0$] Startwert der Transistoranzahl im Basisjahr $x_0$
+  \item[$T$] Verdopplungszeit in Jahren (hier ca. 2 Jahre)
+\end{description}
