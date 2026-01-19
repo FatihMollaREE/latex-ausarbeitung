@@ -4,9 +4,16 @@
 \usepackage{graphicx}
 \usepackage{siunitx}
 \usepackage{subcaption}
+\usepackage{amsmath}
+\usepackage{needspace}   
+\usepackage{mathtools}
 
 \usepackage{float}
 \usepackage{enumitem}
+
+\usepackage[absolute,overlay]{textpos}
+\setlength{\TPHorizModule}{1cm}
+\setlength{\TPVertModule}{1cm}
 
 \usepackage{booktabs}
 
@@ -16,8 +23,11 @@
 \usepackage{pgfplots}
 \pgfplotsset{compat=1.18}
 \usepackage{pgfplotstable}
-
-\usepackage[backend=biber,style=authoryear]{biblatex}
+\usepackage[
+  backend=biber,
+  style=numeric,
+  sorting=none
+]{biblatex}
 \addbibresource{./literatur/quellen.bib}
 
 \newcommand{\zB}{z.\,B.\,}
@@ -30,11 +40,25 @@
 \pagestyle{headings}
  
 \begin{document}
+%\counterwithin{lstlisting}{section}
+%
+  % Titelseite
+  \newcommand{\institutname}{  Institut für Angewandte Elektrotechnik }
+  \newcommand{\thetitle}{Vom RTL zum GDS: Einführung in das VLSI-Design von ICs mit Fokus auf Cadence Innovus}
+  \newcommand{\theauthor}{Fatih Mollamehmetoglu}
+  \newcommand{\studentnumber}{916681}
+  \newcommand{\discipline}{Elektro- und Informationstechnik}
+  \newcommand{\abschluss}{Bachelor of Engineering}
+  \newcommand{\dokumentname}{Ausarbeitung zum Wahlmodul Wissenschaftliche Texte mit \LaTeX}
+  \newcommand{\prof}{}
+  \newcommand{\finaldate}{\today}
+  \newcommand{\mono}[1]{\lstinline{#1}}
+%\input{inhalt/sperrvermerk}
+\clearpage
 
+  \input{inhalt/deckblatt.tex} % Inhalt aus separater Datei lesen
 
-\maketitle
-\thispagestyle{empty} 
-\newpage
+  \clearpage
 
 \tableofcontents
 \newpage    
@@ -63,7 +87,7 @@
 
 \section{Fazit und Ausblick}
 \input{fazit.tex}
-
+\newpage
 
 \printbibliography
 

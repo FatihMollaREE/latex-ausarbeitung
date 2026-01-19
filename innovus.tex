@@ -4,7 +4,7 @@ Cadence Innovus ist ein Electronic Design Automation (EDA)-Tool, das speziell f�
 
 Das Tool bietet leistungsfähige Optimierungsalgorithmen, die darauf ausgelegt sind, Timing-Anforderungen einzuhalten, die Leistungsaufnahme zu reduzieren und die Chip\-flä\-che effizient zu nutzen. Innovus ist für Designs mit sehr hoher Komplexität geeignet, die Millionen bis Milliarden von Standardzellen umfassen. Neben einer grafischen Benutzeroberfläche (GUI) unterstützt Innovus auch eine skriptbasierte Steuerung über Tcl, was eine flexible Automatisierung des Design-Flows ermöglicht.
 
-Ein weiterer Vorteil ist die enge Integration mit anderen Cadence-Produkten wie Genus für die logische Synthese und Tempus für die Timing-Analyse. Diese Kombination erlaubt einen durchgängigen und konsistenten Design-Flow von der RTL-Beschreibung bis zum finalen Layout. Innovus wird aufgrund seiner Skalierbarkeit, Effizienz und umfangreichen Funktionen in der Industrie breit eingesetzt und gilt als eines der führenden Werkzeuge für die physische Implementierung moderner ICs.
+Ein weiterer Vorteil ist die enge Integration mit anderen Cadence-Produkten wie Genus für die logische Synthese und Tempus für die Timing-Analyse. Diese Kombination erlaubt einen durchgängigen und konsistenten Design-Flow von der RTL-Beschreibung bis zum finalen Layout. Innovus wird aufgrund seiner Skalierbarkeit, Effizienz und umfangreichen Funktionen in der Industrie breit eingesetzt und gilt als eines der führenden Werkzeuge für die physische Implementierung moderner ICs~\parencite{cadence_innovus_ds}.
 
 \subsection{EDE-Tool: Rolle und Integration}
 
@@ -41,50 +41,61 @@ Die Initialisierung bereitet das Design auf die physische Implementierung vor.
 \end{itemize}
 
 \paragraph{Placement (place)}%
-In der Platzierungsphase werden logische Zellen positioniert und der Kontext für nachfolgende Optimierungen geschaffen.
+In der Platzierungsphase werden logische Zellen positioniert und der Kontext für nachfolgende Optimierungen geschaffen
 \begin{itemize}
-    \item Laden der \emph{Always-Source}-Einstellungen: u.\,a. OCV-Modelle, globale Constraints, \texttt{dontTouch}-Sets.
-    \item Einstellen von  \emph{NDRs} (Non-Default Rules) für kritische Netze.
-    \item Festlegen von \emph{VT-Gruppen} gemäß UPC-Definitionen (Leckstrom/Timing-Zielsetzung).
-    \item DFT-Vorplatzierung: Einfügen von \emph{OCCs}, Haupt-DFT-Bereich; Vorplatzierung von \emph{SIBs}, Isolationsmodulen und \emph{MBIST}-Gruppen.
-    \item Erneutes Setzen von \texttt{pg\_keepout}-Zonen (Versorgungsnetz-Reserven).
-    \item Einlesen der \emph{Scan}-Definitionen; Schutz abuttierter Partition-Pins; Hinzufügen von Interface-Buffern.
-    \item \emph{Cell Padding} für Register (Abstandsregeln zur Entzerrung).
-    \item (Re-)Connect der Power-Netze, falls erforderlich; \emph{cgate}-Platzierung (Clock-Gating-Zellen).
-    \item Definition von \emph{Path Groups} für die Timing-Analyse und Optimierungspriorisierung.
-    \item Platzierung und kombinierte Optimierung via \texttt{place\_opt\_design}.
-    \item \emph{save design}.
+    \item Laden der \emph{Always-Source}-Einstellungen: u.\,a. OCV-Modelle, globale Constraints, \texttt{dontTouch}-Sets
+    \item Einstellen von  \emph{NDRs} (Non-Default Rules) für kritische Netze
+    \item Festlegen von \emph{VT-Gruppen} gemäß UPC-Definitionen (Leckstrom/Timing-Zielsetzung)
+    \item DFT-Vorplatzierung: Einfügen von \emph{OCCs}, Haupt-DFT-Bereich; Vorplatzierung von \emph{SIBs}, Isolationsmodulen und \emph{MBIST}-Gruppen
+    \item Erneutes Setzen von \texttt{pg\_keepout}-Zonen (Versorgungsnetz-Reserven)
+    \item Einlesen der \emph{Scan}-Definitionen; Schutz abuttierter Partition-Pins; Hinzufügen von Interface-Buffern
+    \item \emph{Cell Padding} für Register (Abstandsregeln zur Entzerrung)
+    \item (Re-)Connect der Power-Netze, falls erforderlich; \emph{cgate}-Platzierung (Clock-Gating-Zellen)
+    \item Definition von \emph{Path Groups} für die Timing-Analyse und Optimierungspriorisierung
+    \item Platzierung und kombinierte Optimierung via \texttt{place\_opt\_design}
+    \item \emph{save design}
+    \item Abschätzung der HPWL-Drahtlänge:
+        \begin{equation}
+        \text{HPWL} = (x_{\max} - x_{\min}) + (y_{\max} - y_{\min})
+        \label{eq:hpwl}
+\end{equation}
 \end{itemize}
 
 \paragraph{Clock Tree Synthesis (CTS)}%
-Die CTS erzeugt und optimiert den physikalischen Taktbaum.
+Die CTS erzeugt und optimiert den physikalischen Taktbaum
 \begin{itemize}
-    \item Laden der \emph{Always-Source}-Einstellungen (CTS-spezifische Parameter).
-    \item \texttt{ccopt} Konfiguration: Clock-Domain-Spezifikation, Puffer-/Inverter-Auswahl, Skew-/Latency-Ziele.
-    \item Ausführen der Taktbaum-Erzeugung und -Optimierung mit \texttt{clock\_opt\_design}.
-    \item Entfernen vorher gesetzter \emph{cell padding} (sofern nicht mehr erforderlich).
-    \item \emph{Hold}-Optimierung zur Einhaltung kurzer Pfade (Setup/Hold-Balance).
-    \item \emph{save design}.
+    \item Laden der \emph{Always-Source}-Einstellungen (CTS-spezifische Parameter)
+    \item \texttt{ccopt} Konfiguration: Clock-Domain-Spezifikation, Puffer-/Inverter-Auswahl, Skew-/Latency-Ziele
+    \item Ausführen der Taktbaum-Erzeugung und -Optimierung mit \texttt{clock\_opt\_design}
+    \item Entfernen vorher gesetzter \emph{cell padding} (sofern nicht mehr erforderlich)
+    \item \emph{Hold}-Optimierung zur Einhaltung kurzer Pfade (Setup/Hold-Balance)
+    \item \emph{save design}
+    \item Bestimmung der effektiven Clock-Latenz nach der Formel ~\eqref{eq:latency}
+        \begin{equation}
+        \text{Latency}_{\text{eff}} = \text{Latency}_{\text{src}} + \text{Latency}_{\text{net}}
+        \label{eq:latency}
+        \end{equation}
+
 \end{itemize}
 
 \paragraph{Routing (route)}%
-Das Routing verbindet die Netze über die verfügbaren Metall-Layer unter Einhaltung der Designregeln.
+Das Routing verbindet die Netze über die verfügbaren Metall-Layer unter Einhaltung der Designregeln
 \begin{itemize}
-    \item Laden der \emph{Always-Source}-Einstellungen; Setzen eines Genauigkeit/Laufzeit-Trade-offs (Routing-Strategie).
-    \item (Re-)Connect der Power-Netze; Feinanpassung der \emph{NDRs} für ausgewählte Netze.
-    \item Kombination aus globalem und detailliertem Routing über \texttt{route\_opt\_design}.
-    \item \emph{ADDCAP}: Kapazitive Ergänzungen/Decaps zur Stabilisierung der Versorgung und Reduktion von IR-Drop/Noise.
-    \item \emph{save design}.
+    \item Laden der \emph{Always-Source}-Einstellungen; Setzen eines Genauigkeit/Laufzeit-Trade-offs (Routing-Strategie)
+    \item (Re-)Connect der Power-Netze; Feinanpassung der \emph{NDRs} für ausgewählte Netze
+    \item Kombination aus globalem und detailliertem Routing über \texttt{route\_opt\_design}
+    \item \emph{ADDCAP}: Kapazitive Ergänzungen/Decaps zur Stabilisierung der Versorgung und Reduktion von IR-Drop/Noise
+    \item \emph{save design}
 \end{itemize}
 
 \paragraph{Signoff (signoff)}%
-Die Signoff-Phase validiert Herstellbarkeit, Timing und Zuverlässigkeit und bereitet die Übergabe an die Fertigung vor.
+Die Signoff-Phase validiert Herstellbarkeit, Timing und Zuverlässigkeit und bereitet die Übergabe an die Fertigung vor
 \begin{itemize}
-    \item RC-Extraktion (\texttt{extract\_rc}) für akkurate parasitäre Modelle.
-    \item \emph{Static Timing Analysis} und Abschluss-Timing (\texttt{signoff\_timing}); ggf. ECO-Schleifen.
-    \item Design Rule Checks (\texttt{signoff\_dr}) und ergänzende DFM-Prüfungen.
-    \item Optional: Power-/EM-Analysen (IR-Drop, Elektromigration) je nach Projekt-Setup.
-    \item Export der finalen Daten (z.\,B. \texttt{write\_gds} für GDSII).
+    \item RC-Extraktion (\texttt{extract\_rc}) für akkurate parasitäre Modelle
+    \item \emph{Static Timing Analysis} und Abschluss-Timing (\texttt{signoff\_timing}); ggf. ECO-Schleifen
+    \item Design Rule Checks (\texttt{signoff\_dr}) und ergänzende DFM-Prüfungen
+    \item Optional: Power-/EM-Analysen (IR-Drop, Elektromigration) je nach Projekt-Setup
+    \item Export der finalen Daten (z.\,B. \texttt{write\_gds} für GDSII)
 \end{itemize}
 
 \begin{table}[H]

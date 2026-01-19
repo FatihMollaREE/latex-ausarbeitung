@@ -13,11 +13,12 @@ Dies soll den Einstieg in reale industrielle Prozesse erleichtern und eine Grund
 Tätigkeiten bieten.
 
 \begin{figure}[h!]
+  \vspace{0.5cm}
   \centering
   \begin{tikzpicture}
     \begin{axis}[
-      width=0.7\linewidth,
-      height=8cm,
+      width=0.8\linewidth,
+      height=7cm,
       ymode=log,
       log basis y=10,
       xlabel={Jahr},
@@ -55,12 +56,11 @@ Tätigkeiten bieten.
 
 Die Trendlinie wird durch die exponentielle Ausgleichsgerade approximiert:
 
-\[
-y(x) = y_0 \cdot 2^{\frac{x-x_0}{T}}
-\]
-
-\begin{description}
-  \item[$y(x)$] Anzahl der Transistoren im Jahr $x$
-  \item[$y_0$] Startwert der Transistoranzahl im Basisjahr $x_0$
-  \item[$T$] Verdopplungszeit in Jahren (hier ca. 2 Jahre)
-\end{description}
+\needspace{7\baselineskip} 
+\begin{align}
+y(x) &= y_0 \cdot 2^{\frac{x - x_0}{T}} \label{eq:moore}\\
+\intertext{mit}
+y(x) &:\ \text{Anzahl der Transistoren im Jahr } x \notag\\
+y_0 &:\ \text{Startwert der Transistoranzahl im Basisjahr } x_0 \notag\\
+T   &:\ \text{Verdopplungszeit in Jahren (hier ca.\ 2 Jahre).} \notag
+\end{align}
