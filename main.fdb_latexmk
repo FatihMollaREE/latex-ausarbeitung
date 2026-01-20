@@ -1,15 +1,15 @@
 # Fdb version 4
-["biber main"] 1768912496.84866 "main.bcf" "main.bbl" "main" 1768913663.05423 0
+["biber main"] 1768912496.84866 "main.bcf" "main.bbl" "main" 1768915011.88962 0
   "./literatur/quellen.bib" 1768912359.56524 8235 95b51f873fe1237a0931551054e320fb ""
-  "main.bcf" 1768913662.94747 107134 c4a3f8ab580485d4805243bbff063817 "pdflatex"
+  "main.bcf" 1768915011.79179 107134 c4a3f8ab580485d4805243bbff063817 "pdflatex"
   (generated)
   "main.bbl"
   "main.blg"
   (rewritten before read)
-["pdflatex"] 1768913659.59686 "/home/fatih/coding/latex-ausarbeitung/latex-ausarbeitung/main.tex" "main.pdf" "main" 1768913663.05453 0
+["pdflatex"] 1768915011.09566 "/home/fatih/coding/latex-ausarbeitung/latex-ausarbeitung/main.tex" "main.pdf" "main" 1768915011.88991 0
   "/etc/texmf/web2c/texmf.cnf" 1768660371.42237 475 c0e671620eb5563b2130f56340a5fde8 ""
   "/home/fatih/.texlive2023/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1095.600pk" 1768660721.97434 12644 488ed9a59ca130db5e6dca88889b5b68 ""
-  "/home/fatih/coding/latex-ausarbeitung/latex-ausarbeitung/main.tex" 1768912359.57324 2154 d0acb8f08701ab55b2a499ee18c40ab7 ""
+  "/home/fatih/coding/latex-ausarbeitung/latex-ausarbeitung/main.tex" 1768914915.74047 2189 e957b4792c1a1ea2d0a514d12d989f16 ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/tcrm1095.tfm" 1136768653 1536 02c06700a42be0f5a28664c7273f82e7 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1246382020 1004 54797486969f23fa377b128694d548df ""
@@ -255,8 +255,6 @@
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1768660592.32619 165012 f177baa1c39a3ebd62c3096a43521a0d ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1768660616 7307257 35d70f6e9013a1d0c1e8d8a656dbb929 ""
   "data/moore_raw_data.csv" 1768660178.48439 292 05b3984247f21841aae0693acb2e83b9 ""
-  "einleitung.tex" 1768912359.56524 7387 47c234b4b903e2818f2c32d9740f92f7 ""
-  "fazit.tex" 1768913659.40682 1569 62a04e682022b9db412ae1d036d865f0 ""
   "figures/4004.jpg" 1768660178.48439 360974 659848340f39289dfd534058713c7e69 ""
   "figures/Renesas_Electronics_logo.pdf" 1768912359.56524 2612 b83a3221615baf64c856ae43ea9b8151 ""
   "figures/clock_tree.png" 1768660178.48439 68356 88da42d106ac08fe281b832d6c14afbf ""
@@ -268,15 +266,17 @@
   "figures/powerrouting-fein.png" 1768660178.48439 3881 13427b73a363883a0209f27544bc39a2 ""
   "figures/route-zoomed-noRoutes.png" 1768660178.49249 148436 a89957c41ad10873af71f0ac906fe44e ""
   "figures/route-zoomed.png" 1768660178.49249 360037 add5ea77c71c62264c3847575b5a8c45 ""
-  "ic-designflow.tex" 1768912359.56524 11942 e6b962007ac98832cfd1bbe903515825 ""
-  "inhalt/deckblatt.tex" 1768912509.30458 1211 5ec8c57fd8f34d15833d407a5acb1698 ""
-  "innovus.tex" 1768912359.56524 10182 e175d86f40693a290ea518e98fd9b4e4 ""
-  "main.aux" 1768913662.94747 6344 7f060363838cee9cc1ed79827018caaa "pdflatex"
+  "inhalt/deckblatt.tex" 1768913739.42209 1211 5ec8c57fd8f34d15833d407a5acb1698 ""
+  "inhalt/einleitung.tex" 1768914655.13328 7387 47c234b4b903e2818f2c32d9740f92f7 ""
+  "inhalt/fazit.tex" 1768914655.13328 1569 62a04e682022b9db412ae1d036d865f0 ""
+  "inhalt/ic-designflow.tex" 1768914655.13761 11942 e6b962007ac98832cfd1bbe903515825 ""
+  "inhalt/innovus.tex" 1768914655.13761 10182 e175d86f40693a290ea518e98fd9b4e4 ""
+  "inhalt/motivation.tex" 1768915010.95797 2492 c3d33c5a54860d17d8022c9a8e3e0a90 ""
+  "main.aux" 1768915011.79179 6344 7f060363838cee9cc1ed79827018caaa "pdflatex"
   "main.bbl" 1768912497.66441 4915 de3248817660077a5665a155a92d62b6 "biber main"
-  "main.run.xml" 1768913662.9518 2344 a49bbd08feee13dd89517410dae448bf "pdflatex"
-  "main.tex" 1768912359.57324 2154 d0acb8f08701ab55b2a499ee18c40ab7 ""
-  "main.toc" 1768913662.9518 1666 ac93d37bb76215b18c4078482774dc27 "pdflatex"
-  "motivation.tex" 1768912359.57324 2492 c3d33c5a54860d17d8022c9a8e3e0a90 ""
+  "main.run.xml" 1768915011.79179 2344 a49bbd08feee13dd89517410dae448bf "pdflatex"
+  "main.tex" 1768914915.74047 2189 e957b4792c1a1ea2d0a514d12d989f16 ""
+  "main.toc" 1768915011.79179 1666 ac93d37bb76215b18c4078482774dc27 "pdflatex"
   (generated)
   "main.aux"
   "main.bcf"
